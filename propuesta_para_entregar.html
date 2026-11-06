@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Propuesta de Datos · Centinela de nubosidad alta</title>
+<style>
+@page{size:A4;margin:13mm 15mm}*{box-sizing:border-box}body{font-family:Arial,Helvetica,sans-serif;color:#17212b;font-size:9.2pt;line-height:1.23;margin:0}h1{font-size:15pt;margin:0 0 3mm;color:#17395a}.meta{font-size:8pt;color:#555;margin-bottom:3mm}h2{font-size:9.2pt;color:#17395a;margin:2.5mm 0 .6mm}p{margin:0}a{color:#17395a;text-decoration:none}table{border-collapse:collapse;width:100%;font-size:8pt}td,th{border:1px solid #b9c5d0;padding:1mm 1.5mm;vertical-align:top}th{background:#e8eef3}.small{font-size:7.7pt}.footer{margin-top:2mm;font-size:7pt;color:#555}
+</style></head><body>
+<h1>Propuesta de Datos · Centinela de nubosidad alta</h1>
+<p class="meta"><b>Proyecto Centinela · Fase 1 · Paso 0</b> &nbsp;|&nbsp; Integrantes: <b>David Felipe Tautiva Nieto; Isabella Carolina Jimenez; Juan David Bernal Millot</b> &nbsp;|&nbsp; 2026-11-05 &nbsp;|&nbsp; v2, pendiente de aprobación</p>
+<h2>1. Problema, cliente y objetivo binario</h2>
+<p>Un operador de una instalación solar pequeña necesita reconocer condiciones de cielo muy cubierto para revisar su expectativa inmediata de generación. Riesgo: <b>nubosidad alta sí/no</b>. Las categorías GLOBE <i>broken</i> y <i>overcast</i> son positivas; <i>none</i>, <i>few</i>, <i>isolated</i> y <i>scattered</i>, negativas. Se excluye <i>obscured</i> por ambigüedad. Se pierde el detalle ordinal, a cambio de una decisión simple. No se predice producción eléctrica ni clima futuro.</p>
+<h2>2. Dos modalidades</h2>
+<p><b>Imagen:</b> fotografía del cielo hacia arriba, tomada con cámara por un observador GLOBE; aporta forma, textura y distribución de nubes. <b>Serie:</b> irradiancia solar, temperatura y humedad horarias NASA POWER, derivadas de observaciones satelitales y modelos. Son instrumentos distintos.</p>
+<h2>3. Fuentes, enlaces y condiciones de uso</h2>
+<table><tr><th>Modalidad y productor</th><th>Fuente</th><th>Condiciones verificadas</th><th>Personas</th></tr><tr><td>Imagen y etiqueta · NASA Langley/GLOBE</td><td><a href="https://doi.org/10.5281/zenodo.18763550">DOI 10.5281/zenodo.18763550</a>; archivo anual 2024 v3.4. <a href="https://data.globe.gov/system/photos/2024/01/03/3716723/original.jpg">Foto de ejemplo</a>.</td><td>Uso libre en investigación y aplicaciones con reconocimiento de la fuente, según ficha del DOI. Sin licencia CC numerada declarada.</td><td>No en el recorte.</td></tr><tr><td>Serie · NASA POWER</td><td><a href="https://power.larc.nasa.gov/docs/services/api/temporal/hourly/">API horaria oficial</a>, respuesta v2.10.4.</td><td>Uso sin restricciones; NASA solicita cita, según registro de datos del proyecto.</td><td>No.</td></tr></table>
+<h2>4. Procedencia y crudeza</h2>
+<p>Descarga directa de las fuentes primarias; sin Kaggle. GLOBE bruto: 180.101 registros, con fotos y etiquetas faltantes. Recorte unido: 2.459 fotos; 839 positivas y 1.620 negativas. Búsqueda del archivo exacto en Kaggle el 2026-11-05: sin réplica encontrada. Las huellas SHA-256, los nombres y el test constan en el anexo B.</p>
+<h2>5. Fases y clave de alineación</h2>
+<p><b>Fase 1:</b> solo imagen, resumida en varios números de color y brillo para un MLP. <b>Fase 2:</b> CNN para fotos, RNN/LSTM/GRU para 24 horas anteriores de POWER y fusión. La clave es <b>agregada</b>: celda 28,5–28,75° N / 81,75–81,5° O y hora UTC; se asigna la hora POWER anterior a la foto. POWER representa la celda, no cada sitio. Se separará por fecha para reducir fuga y se revisará por sitio. El anexo A muestra diez fechas unidas.</p>
+<h2>6. Línea base comprometida</h2>
+<p>En prueba: exactitud y recall de la clase mayoritaria. Se añadirá una regla simple de brillo medio, con umbral elegido solo en validación. Se conservarán partición y semilla para comparar la Fase 2.</p>
+<h2>7. Riesgos y mitigación</h2>
+<p>La concentración de fotos de algunos sitios puede inflar métricas: evaluar por fecha y sitio. Falsa alarma: revisión innecesaria; alarma omitida: expectativa solar demasiado optimista. La salida apoyará revisión humana. Se usarán fotos del cielo sin personas; antes de publicar más imágenes se revisarán rostros y metadatos. Checklist de Ley 1581 en anexo C.</p>
+<h2>8. Referencias APA 7</h2>
+<p class="small">Rogerson, T., Colón Robles, M., &amp; Taylor, J. (2026). <i>GLOBE Clouds with Satellite Collocation Annual Datasets</i> (v1; archivo anual v3.4) [Conjunto de datos]. Zenodo. https://doi.org/10.5281/zenodo.18763550<br>NASA POWER. (2026). <i>POWER Hourly API</i> (v2.10.4) [Conjunto de datos]. NASA Langley Research Center. https://power.larc.nasa.gov/</p>
+<p class="footer">Anexos A, B y C, bitácora y datos reproducibles en la carpeta del proyecto. Propuesta sujeta a aprobación del docente.</p>
+</body></html>

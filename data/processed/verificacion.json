@@ -1,0 +1,24 @@
+{
+  "raw_globe_rows": 180101,
+  "joined_rows": 2459,
+  "unique_dates": 162,
+  "unique_sites": 102,
+  "class_counts": {
+    "1": 839,
+    "0": 1620
+  },
+  "original_cover_counts": {
+    "broken": 557,
+    "none": 665,
+    "isolated": 231,
+    "scattered": 640,
+    "overcast": 282,
+    "few": 84
+  },
+  "missing_photo_in_joined_rows": 0,
+  "power_hours": 8784,
+  "sha256": {
+    "globe_2024.csv.zip": "ca88944757b45d1b205c634d8631fdaeb01d54b11acecc88fecccd247ca4adce",
+    "power_2024_hourly.json": "9b8b7de561c812e02c1747b98143452390ff62c32ce352bd401c578cbca6857c"
+  }
+}

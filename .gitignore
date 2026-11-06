@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+data/raw/photos/*.tmp
+/guia_sustentacion.md
+/.tools/
+/output/pdf/propuesta_preview.png
